@@ -1,19 +1,18 @@
 import { body } from "express-validator";
 import type { Controller, ControllerComponent } from "@src/@types/controller";
-import { createExample } from "@src/services/ExampleService";
+import { createExample, getExamples } from "@src/services/ExampleService";
 import sanitizeModel from "@src/utils/helpers/sanitizeModel";
 
 const ExampleController: Controller = [
     <ControllerComponent> {
-        path: '/example/hello-world',
+        path: '/example/hello',
         method: 'post',
         validation: [
             body('name').isString(),
         ],
         callback: async (req, res) => {
-            console.log(req.body);
-            const name = req.body.query as string;
-            const newExample = createExample(name);
+            const name = req.body.name as string;
+            const newExample = await createExample(name);
 
             res.status(200).send({
                 status: 200,
@@ -22,7 +21,23 @@ const ExampleController: Controller = [
                 }
             });
         }
+    },
+
+    <ControllerComponent> {
+        path: '/examples',
+        method: 'get',
+        callback: async (req, res) => {
+            const examples = await getExamples();
+
+            res.status(200).send({
+                status: 200,
+                data: {
+                    examples: examples.map(example => sanitizeModel(example)),
+                }
+            });
+        }
     }
+
 ];
 
 export default ExampleController;

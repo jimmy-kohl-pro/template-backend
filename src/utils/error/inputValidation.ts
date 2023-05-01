@@ -7,8 +7,11 @@ import AppError from './AppError';
  * @param {ValidationChain[]} validations - ValidationChain[] - an array of validation chains
  * @returns A function that takes in a request, response, and next function.
  */
-export const validate = (validations: ValidationChain[]) => {
+export const validate = (validations?: ValidationChain[]) => {
     return async (req: express.Request, res: express.Response, next: express.NextFunction) => {
+        if (!validations) {
+            return next();
+        }
         await Promise.all(validations.map(validation => validation.run(req)));
         const errors = validationResult(req);
         if (errors.isEmpty()) {
