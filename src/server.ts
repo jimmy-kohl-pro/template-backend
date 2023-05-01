@@ -1,7 +1,12 @@
 import app from './app';
+import { db } from './database/mongodb';
 
-const port = process.env.PORT || 3000;
-
-app.listen(port, () => {
-    console.log(`Server is listening on port ${port}`);
+db.once('open', () => {
+    console.log('Connected to MongoDB');
+    
+    const port = process.env.PORT || 3000;
+    
+    app.listen(port, () => {
+        console.log(`Server is listening on port ${port}`);
+    });
 });
