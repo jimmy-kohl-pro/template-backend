@@ -1,6 +1,6 @@
 import { body } from "express-validator";
 import type { Controller, ControllerComponent } from "@src/@types/controller";
-import { createExample, getExamples } from "@src/services/ExampleService";
+import { createExample, getExamples } from "@src/services/example.service";
 import sanitizeModel from "@src/utils/helpers/sanitizeModel";
 
 const ExampleController: Controller = [

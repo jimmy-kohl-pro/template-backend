@@ -1,4 +1,4 @@
-import Example, { IExample } from "@src/models/ExampleModel";
+import Example, { IExample } from "@src/models/Example.model";
 
 export async function createExample(query: string): Promise<IExample> {
     const example = new Example({

@@ -1,0 +1,1 @@
+// all global types of your app

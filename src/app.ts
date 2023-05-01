@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import { customErrorMiddleware, notFoundMiddleware } from './middleware/errorMiddleware';
+import { customErrorMiddleware, notFoundMiddleware } from './middleware/error.middleware';
 import routes from './routes';
 
 const app = express();
