@@ -10,7 +10,8 @@ const ExampleController: Controller = [
         validation: [
             body('name').isString(),
         ],
-        fn: async (req, res) => {
+        callback: async (req, res) => {
+            console.log(req.body);
             const name = req.body.query as string;
             const newExample = createExample(name);
 

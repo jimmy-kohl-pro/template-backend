@@ -34,17 +34,3 @@ The code is structured into the following directories:
 - `src/routes.ts`: contains all the routes defined for the application.
 - `src/services`: contains all services which handle the business logic.
 
-## Usage
-
-To add a new route, create a new controller in the `src/controllers` directory and import it in `src/routes.ts`. For example:
-
-```typescript
-import { Router } from 'express';
-import ExampleController from './controllers/ExampleController';
-
-const routes: Router = Router();
-
-// Use the ExampleController for '/example' routes
-routes.use('/example', ExampleController);
-
-export default routes;

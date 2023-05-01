@@ -22,9 +22,14 @@ export interface ControllerComponent {
     validation: List<ValidationChain>;
 
     /**
+     * A list of middleware that will be called before the callback function.
+     */
+    middlewares: List<(req: Request, res: Response, next: Function) => Promise<void>>;
+
+    /**
      * A function that is called when the route is called 
      */
-    fn: (req: Request, res: Response) => Promise<T> | T;
+    callback: (req: Request, res: Response) => Promise<T> | T;
 }
 
 export type Controller = ControllerComponent[];
