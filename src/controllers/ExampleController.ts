@@ -1,6 +1,7 @@
 import { body } from "express-validator";
 import type { Controller, ControllerComponent } from "@src/@types/controller";
 import { createExample } from "@src/services/ExampleService";
+import sanitizeModel from "@src/utils/helpers/sanitizeModel";
 
 const ExampleController: Controller = [
     <ControllerComponent> {
@@ -16,7 +17,7 @@ const ExampleController: Controller = [
             res.status(200).send({
                 status: 200,
                 data: {
-                    newExample
+                    example: sanitizeModel(newExample),
                 }
             });
         }
