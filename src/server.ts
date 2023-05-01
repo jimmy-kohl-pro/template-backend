@@ -2,7 +2,7 @@ import app from './app';
 import { db } from './database/mongodb';
 
 db.once('open', () => {
-    console.log('Connected to MongoDB');
+    console.log('Launching server...');
     
     const port = process.env.PORT || 3000;
     

@@ -1,6 +1,9 @@
-import Example from "@src/models/ExampleModel";
+import Example, { IExample } from "@src/models/ExampleModel";
 
-export function getExample(query: string) {
-    const example = Example.getExample(query);
-    return example.string;
+export function createExample(query: string): IExample {
+    const example = new Example({
+        message: `Hello, ${query}!`
+    });
+
+    return example;
 }

@@ -1,22 +1,22 @@
 import { body } from "express-validator";
 import type { Controller, ControllerComponent } from "@src/@types/controller";
-import { getExample } from "@src/services/ExampleService";
+import { createExample } from "@src/services/ExampleService";
 
 const ExampleController: Controller = [
     <ControllerComponent> {
         path: '/example/hello-world',
         method: 'post',
         validation: [
-            body('query').isString(),
+            body('name').isString(),
         ],
         fn: async (req, res) => {
-            const query = req.body.query;
-            const message = getExample(query);
+            const name = req.body.query as string;
+            const newExample = createExample(name);
 
             res.status(200).send({
                 status: 200,
                 data: {
-                    message
+                    newExample
                 }
             });
         }
